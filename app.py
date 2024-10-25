@@ -7,7 +7,6 @@ import joblib
 import json
 
 
-
 app = Flask(__name__)
 
 
@@ -217,6 +216,7 @@ except Exception as e:
     modelo = None
 
 
+
 @app.route('/predicciones', methods=['GET'])
 def obtain_absences():
     # Obtener listas de archivos
@@ -246,7 +246,7 @@ def predict_absences(file_list, area_name, factor):
         # Extraer la fecha del nombre del archivo
         date = file.split('_')[-1].replace('.csv', '')
 
-        prob_faltas = (sum(predictions) / 25) * factor
+        prob_faltas = (sum(predictions) / 10) * factor
 
         resultado = {
             "area_name": area_name,
@@ -258,7 +258,6 @@ def predict_absences(file_list, area_name, factor):
 
     return resultados
     
-
 
     
 if __name__ == '__main__':
