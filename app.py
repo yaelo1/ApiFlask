@@ -246,7 +246,7 @@ def predict_absences(file_list, area_name, factor):
         # Extraer la fecha del nombre del archivo
         date = file.split('_')[-1].replace('.csv', '')
 
-        prob_faltas = (sum(predictions) / 10) * factor
+        prob_faltas = (sum(predictions) / 100) * factor
 
         resultado = {
             "area_name": area_name,
