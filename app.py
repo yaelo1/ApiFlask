@@ -3,13 +3,11 @@ from flask import Flask, request, jsonify
 import pandas as pd
 import joblib
 from datetime import datetime
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
 
-
-UPLOAD_FOLDER = 'uploads'
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
 
 modelo_path = 'random_forest_model.pkl'
 try:
@@ -29,6 +27,8 @@ def ausentismo_rango():
 
     if not start_date or not end_date:
         return jsonify({"error": "Debe proporcionar 'start_date' y 'end_date' en el cuerpo de la solicitud"}), 400
+    
+
     
 
 
