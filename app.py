@@ -4,10 +4,10 @@ import pandas as pd
 import joblib
 from datetime import datetime
 from flask_cors import CORS
-
+ 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
-
+CORS(app, resources={r "/*": {"origins": "http://localhost:4200"}})
+ 
 
 modelo_path = 'random_forest_model.pkl'
 try:
