@@ -55,7 +55,13 @@ def procesar_datos():
     personal_area_2_limpio['centro'] = 6334460
     personal_area_3_limpio['centro'] = 6334460
     personal_area_4_limpio['centro'] = 6334460
-    
+    carpeta = 'data/predict'
+    for archivo in os.listdir(carpeta):
+        ruta_archivo = os.path.join(carpeta, archivo)
+        if os.path.isfile(ruta_archivo):
+            os.remove(ruta_archivo)
+            print(f"Archivo eliminado: {ruta_archivo}")
+
     for fecha in fechas:
         # Crear una variable de tipo datetime
         current_date = datetime.strptime(fecha, '%d-%m-%Y')
@@ -198,7 +204,10 @@ def procesar_datos():
         df3 = personal_area_3_final.drop(columns=['Date'], axis=1)
         df4 = personal_area_4_final.drop(columns=['Date'], axis=1)
         # Borrar todo lo que este en la carpeta predict
-        files = [f'data/predict/{file}' for file in os.listdir('data/predict')]
+        
+
+
+        #
         df1.to_csv(f'data/predict/Area_5M7_{fecha}.csv', index=False)
         df2.to_csv(f'data/predict/Area_5M23_{fecha}.csv', index=False)
         df3.to_csv(f'data/predict/Area_5M24_{fecha}.csv', index=False)
@@ -246,7 +255,7 @@ def predict_absences(file_list, area_name, factor):
         # Extraer la fecha del nombre del archivo
         date = file.split('_')[-1].replace('.csv', '')
 
-        prob_faltas = (sum(predictions) / 100) * factor
+        prob_faltas = (sum(predictions) / 10) * factor
 
         resultado = {
             "area_name": area_name,
