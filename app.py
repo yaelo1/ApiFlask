@@ -5,9 +5,10 @@ import holidays as hd
 import os
 import joblib
 import json
-
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/fechas', methods=['POST'])
